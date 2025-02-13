@@ -1,7 +1,10 @@
 package cuentas;
 
 public class CCuenta {
-
+    
+    /**
+     * Atributos
+     */
     private String nombre;
     private String cuenta;
     private double saldo;
@@ -63,11 +66,14 @@ public class CCuenta {
         this.tipoInterés = tipoInterés;
     }
 
-
+    /**
+     * Constructor
+     */
     public CCuenta()
     {
     }
-
+    
+    
     public CCuenta(String nom, String cue, double sal, double tipo)
     {
         nombre =nom;
@@ -75,18 +81,30 @@ public class CCuenta {
         saldo=sal;
     }
 
+    /**
+     * Metodo para estado, ingresar y retirar
+     * @return 
+     */
     public double estado()
     {
         return getSaldo();
     }
-
+    /**
+     * Metodo ingresar dinero
+     * @param cantidad
+     * @throws Exception 
+     */
     public void ingresar(double cantidad) throws Exception
     {
         if (cantidad<0)
             throw new Exception("No se puede ingresar una cantidad negativa");
         setSaldo(getSaldo() + cantidad);
     }
-
+    /**
+     * Metodo retirar dinero
+     * @param cantidad
+     * @throws Exception 
+     */
     public void retirar(double cantidad) throws Exception
     {
         if (cantidad <= 0)
@@ -95,13 +113,19 @@ public class CCuenta {
             throw new Exception ("No se hay suficiente saldo");
         setSaldo(getSaldo() - cantidad);
     }
-    
+    /**
+     * Metodo operativa_cuenta para refactorizar la clase Main
+     * @param cantidad 
+     */
     public static void operativa_cuenta(float cantidad) {
         CCuenta cuenta1;
         double saldoActual;
         cuenta1 = new CCuenta("Antonio López","1000-2365-85-1230456789",2500,0);
         saldoActual = cuenta1.estado();
         System.out.println("El saldo actual es"+ saldoActual );
+        /**
+         * Excepciones si no se cimplen los metodos retirar e ingresar
+         */
         try {
             cuenta1.retirar(cantidad);
         } catch (Exception e) {
